@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regulatory Tracking | Stackly Platform</title>
+  <meta name="description" content="Global regulatory tracking, multi-jurisdictional compliance monitoring, and mandate attestation on Stackly.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- FIXED SIDEBAR (EXACTLY 5 HEADINGS) -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="sidebar-header">
+      <a href="dashboard.html" class="sidebar-brand dash-brand-logo-action" title="Navigate to Overview">
+        <img src="assets/logo.webp" alt="Stackly Logo">
+      </a>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+
+    <div class="sidebar-nav-container">
+      <div class="sidebar-heading-group">
+        <div class="sidebar-section-title">Navigation</div>
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item" data-heading="Overview">
+            <a href="dashboard.html">
+              <span class="material-icons">dashboard</span>
+              <span>Overview</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item active" data-heading="Regulatory Tracking">
+            <a href="regulatory-tracking.html">
+              <span class="material-icons">verified_user</span>
+              <span>Regulatory Tracking</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Risk Matrix">
+            <a href="risk-matrix.html">
+              <span class="material-icons">shield</span>
+              <span>Risk Matrix</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Performance Metrics">
+            <a href="performance-metrics.html">
+              <span class="material-icons">analytics</span>
+              <span>Performance Metrics</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Audit Summaries">
+            <a href="audit-summaries.html">
+              <span class="material-icons">description</span>
+              <span>Audit Summaries</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SIGN OUT AT BOTTOM -->
+    <div class="sidebar-footer">
+      <button class="btn-signout" id="sidebarSignOutBtn">
+        <span class="material-icons">logout</span>
+        <span>Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN WRAPPER -->
+  <div class="dash-main-wrapper">
+    <!-- TOP NAVIGATION BAR -->
+    <header class="dash-topbar">
+      <div class="dash-topbar-left">
+        <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" aria-label="Open Sidebar">
+          <span class="material-icons">menu</span>
+        </button>
+        <h1 class="page-current-heading" id="pageCurrentHeading">Regulatory Tracking</h1>
+      </div>
+
+      <div class="dash-topbar-right">
+        <a href="404.html" class="topbar-badge-icon" title="Regulatory Notifications" aria-label="Notifications">
+          <span class="material-icons">notifications</span>
+          <span class="notification-dot"></span>
+        </a>
+
+        <!-- PROFILE TRIGGER -->
+        <div class="profile-pill-trigger" id="profileDropdownTrigger" tabindex="0">
+          <div class="profile-avatar-circle" id="profileAvatarLetter">S</div>
+          <span class="profile-name-text" id="topbarUserName">Sathya</span>
+          <span class="material-icons" style="font-size: 18px; color: var(--color-text-muted);">expand_more</span>
+
+          <!-- DYNAMIC PROFILE POPOVER PANEL (ONLY NAME, EMAIL, ROLE) -->
+          <div class="profile-panel-dropdown" id="profileDropdownPanel">
+            <div class="profile-panel-header" style="padding-bottom: 0; border-bottom: none; margin-bottom: 0;">
+              <div class="profile-detail-name" id="profileDetailName">Sathya</div>
+              <div class="profile-detail-email" id="profileDetailEmail">sathya.compliance@gmail.com</div>
+              <span class="profile-role-tag" id="profileDetailRole">Compliance Officer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT AREA -->
+    <main class="dash-content-area">
+      <!-- WELCOME / OVERVIEW BANNER -->
+      <section class="dash-welcome-banner fade-in-up" style="background: linear-gradient(135deg, #07152b 0%, #0d3b82 100%);">
+        <div>
+          <h2 class="welcome-title">Global Regulatory Tracking & Mandate Surveillance</h2>
+          <p class="welcome-sub">
+            Real-time multi-jurisdictional compliance surveillance across ISO 27001, SOC 2, GDPR, HIPAA, and statutory regimes.
+          </p>
+        </div>
+      </section>
+
+      <!-- STATS SUMMARY WIDGETS -->
+      <section class="dash-stats-row">
+        <div class="dash-stat-widget fade-in-up">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Active Mandates</div>
+            <div class="stat-widget-value">36 Active</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">verified</span>
+              <span>100% mapped</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon green">
+            <span class="material-icons">fact_check</span>
+          </div>
+        </div>
+
+        <div class="dash-stat-widget fade-in-up">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Global Regimes</div>
+            <div class="stat-widget-value">6 Satisfied</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">language</span>
+              <span>US, EU, UK, APAC</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon blue">
+            <span class="material-icons">public</span>
+          </div>
+        </div>
+
+        <div class="dash-stat-widget fade-in-up">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Attestation Velocity</div>
+            <div class="stat-widget-value">99.2%</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">trending_up</span>
+              <span>+1.8% vs last month</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon purple">
+            <span class="material-icons">speed</span>
+          </div>
+        </div>
+
+        <div class="dash-stat-widget fade-in-up">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Next Filing Deadline</div>
+            <div class="stat-widget-value">Oct 15, 2026</div>
+            <div class="stat-widget-trend trend-warning">
+              <span class="material-icons" style="font-size: 16px;">schedule</span>
+              <span>Q3 Attestation Audit</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon amber">
+            <span class="material-icons">event</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOUR MAIN ANALYTICAL SECTIONS ARRANGED ONE BY ONE -->
+      <section class="analytics-stacked-column">
+        <!-- SECTION 1 – PIE CHART -->
+        <div class="analytic-card scroll-slide-left fade-in-up">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">donut_large</span>
+              <span>1. Regulatory Distribution by Framework</span>
+            </div>
+            <div class="analytic-badge">Framework Breakdown</div>
+          </div>
+          <div class="chart-container-box">
+            <div class="pie-chart-wrapper">
+              <canvas id="regPieChartCanvas" width="220" height="220"></canvas>
+              <ul class="pie-chart-legend">
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#1a56db;"></span>
+                  <span>ISO 27001 (32%)</span>
+                </li>
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#38bdf8;"></span>
+                  <span>SOC 2 Type II (28%)</span>
+                </li>
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#059669;"></span>
+                  <span>GDPR / Privacy (22%)</span>
+                </li>
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#d97706;"></span>
+                  <span>HIPAA / Healthcare (18%)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2 – BAR CHART -->
+        <div class="analytic-card scroll-slide-right fade-in-up">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">bar_chart</span>
+              <span>2. Framework Compliance Attestation Index</span>
+            </div>
+            <div class="analytic-badge">Audited Scores</div>
+          </div>
+          <div class="chart-container-box">
+            <canvas id="regBarChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- SECTION 3 – GRAPH -->
+        <div class="analytic-card scroll-slide-left fade-in-up">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">timeline</span>
+              <span>3. Regulatory Adherence & Policy Attestation Trajectory</span>
+            </div>
+            <div class="analytic-badge">12-Month Performance</div>
+          </div>
+          <div class="chart-container-box">
+            <canvas id="regLineChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- SECTION 4 – VISUAL DIAGRAM -->
+        <div class="analytic-card scroll-slide-right fade-in-up">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">account_tree</span>
+              <span>4. Regulatory Audit & Statutory Filing Roadmap</span>
+            </div>
+            <div class="analytic-badge">Execution Pipeline</div>
+          </div>
+
+          <div class="process-diagram-container">
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">radar</span></div>
+              <div class="diagram-node-title">Horizon Scan</div>
+              <div class="diagram-node-desc">Mandate Intake</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">rule_folder</span></div>
+              <div class="diagram-node-title">Scope Mapping</div>
+              <div class="diagram-node-desc">Control Alignment</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">verified</span></div>
+              <div class="diagram-node-title">Attestation</div>
+              <div class="diagram-node-desc">Evidence Validated</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">send</span></div>
+              <div class="diagram-node-title">Filing</div>
+              <div class="diagram-node-desc">Agency Submission</div>
+            </div>
+          </div>
+
+          <div class="workflow-image-preview">
+            <img src="assets/hero_security_center.webp" alt="Global Regulatory Surveillance & Filing Center">
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

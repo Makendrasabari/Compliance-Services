@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance Metrics | Stackly Platform</title>
+  <meta name="description" content="Compliance performance, SLA metrics, control efficacy velocity, and attestation tracking on Stackly.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- FIXED SIDEBAR (EXACTLY 5 HEADINGS) -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="sidebar-header">
+      <a href="dashboard.html" class="sidebar-brand dash-brand-logo-action" title="Navigate to Overview">
+        <img src="assets/logo.webp" alt="Stackly Logo">
+      </a>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+
+    <div class="sidebar-nav-container">
+      <div class="sidebar-heading-group">
+        <div class="sidebar-section-title">Navigation</div>
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item" data-heading="Overview">
+            <a href="dashboard.html">
+              <span class="material-icons">dashboard</span>
+              <span>Overview</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Regulatory Tracking">
+            <a href="regulatory-tracking.html">
+              <span class="material-icons">verified_user</span>
+              <span>Regulatory Tracking</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Risk Matrix">
+            <a href="risk-matrix.html">
+              <span class="material-icons">shield</span>
+              <span>Risk Matrix</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item active" data-heading="Performance Metrics">
+            <a href="performance-metrics.html">
+              <span class="material-icons">analytics</span>
+              <span>Performance Metrics</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Audit Summaries">
+            <a href="audit-summaries.html">
+              <span class="material-icons">description</span>
+              <span>Audit Summaries</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SIGN OUT AT BOTTOM -->
+    <div class="sidebar-footer">
+      <button class="btn-signout" id="sidebarSignOutBtn">
+        <span class="material-icons">logout</span>
+        <span>Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN WRAPPER -->
+  <div class="dash-main-wrapper">
+    <!-- TOP NAVIGATION BAR -->
+    <header class="dash-topbar">
+      <div class="dash-topbar-left">
+        <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" aria-label="Open Sidebar">
+          <span class="material-icons">menu</span>
+        </button>
+        <h1 class="page-current-heading" id="pageCurrentHeading">Performance Metrics</h1>
+      </div>
+
+      <div class="dash-topbar-right">
+        <a href="404.html" class="topbar-badge-icon" title="Performance KPI Alerts" aria-label="Notifications">
+          <span class="material-icons">notifications</span>
+          <span class="notification-dot"></span>
+        </a>
+
+        <!-- PROFILE TRIGGER -->
+        <div class="profile-pill-trigger" id="profileDropdownTrigger" tabindex="0">
+          <div class="profile-avatar-circle" id="profileAvatarLetter">S</div>
+          <span class="profile-name-text" id="topbarUserName">Sathya</span>
+          <span class="material-icons" style="font-size: 18px; color: var(--color-text-muted);">expand_more</span>
+
+          <!-- DYNAMIC PROFILE POPOVER PANEL (ONLY NAME, EMAIL, ROLE) -->
+          <div class="profile-panel-dropdown" id="profileDropdownPanel">
+            <div class="profile-panel-header" style="padding-bottom: 0; border-bottom: none; margin-bottom: 0;">
+              <div class="profile-detail-name" id="profileDetailName">Sathya</div>
+              <div class="profile-detail-email" id="profileDetailEmail">sathya.compliance@gmail.com</div>
+              <span class="profile-role-tag" id="profileDetailRole">Compliance Officer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT AREA -->
+    <main class="dash-content-area">
+      <!-- WELCOME / OVERVIEW BANNER -->
+      <section class="dash-welcome-banner fade-in-up" style="background: linear-gradient(135deg, #07152b 0%, #15803d 100%);">
+        <div>
+          <h2 class="welcome-title">Compliance Performance & SLA Metrics</h2>
+          <p class="welcome-sub">
+            Systemic control efficacy, policy attestation rates, and resolution velocity across institutional operations.
+          </p>
+        </div>
+      </section>
+
+      <!-- STATS SUMMARY WIDGETS -->
+      <section class="dash-stats-row">
+        <div class="dash-stat-widget fade-in-up">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Attestation Rate</div>
+            <div class="stat-widget-value">98.4%</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">groups</span>
+              <span>942 certified</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon green">
+            <span class="material-icons">badge</span>
+          </div>
+        </div>
+
+        <div class="dash-stat-widget fade-in-up">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">SLA Compliance</div>
+            <div class="stat-widget-value">99.1%</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">verified</span>
+              <span>&lt; 4.2h response</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon blue">
+            <span class="material-icons">timer</span>
+          </div>
+        </div>
+
+        <div class="dash-stat-widget fade-in-up">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Mean Resolution Time</div>
+            <div class="stat-widget-value">4.2 Days</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">trending_down</span>
+              <span>-1.1 days faster</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon purple">
+            <span class="material-icons">bolt</span>
+          </div>
+        </div>
+
+        <div class="dash-stat-widget fade-in-up">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Audit Readiness</div>
+            <div class="stat-widget-value">95.8%</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">grade</span>
+              <span>High confidence</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon amber">
+            <span class="material-icons">stars</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOUR MAIN ANALYTICAL SECTIONS ARRANGED ONE BY ONE -->
+      <section class="analytics-stacked-column">
+        <!-- SECTION 1 – PIE CHART -->
+        <div class="analytic-card scroll-slide-left fade-in-up">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">donut_large</span>
+              <span>1. Performance Target & SLA Achievement</span>
+            </div>
+            <div class="analytic-badge">Operational Delivery</div>
+          </div>
+          <div class="chart-container-box">
+            <div class="pie-chart-wrapper">
+              <canvas id="perfPieChartCanvas" width="220" height="220"></canvas>
+              <ul class="pie-chart-legend">
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#059669;"></span>
+                  <span>Exceeding SLA (62%)</span>
+                </li>
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#2563eb;"></span>
+                  <span>Meeting SLA (31%)</span>
+                </li>
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#d97706;"></span>
+                  <span>Under Review (7%)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2 – BAR CHART -->
+        <div class="analytic-card scroll-slide-right fade-in-up">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">bar_chart</span>
+              <span>2. Department Performance Scorecard</span>
+            </div>
+            <div class="analytic-badge">Operational Attainment</div>
+          </div>
+          <div class="chart-container-box">
+            <canvas id="perfBarChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- SECTION 3 – GRAPH -->
+        <div class="analytic-card scroll-slide-left fade-in-up">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">timeline</span>
+              <span>3. Monthly Compliance Performance Velocity</span>
+            </div>
+            <div class="analytic-badge">Controls Audited vs Remediated</div>
+          </div>
+          <div class="chart-container-box">
+            <canvas id="perfLineChartCanvas"></canvas>
+          </div>
+          <div style="display: flex; gap: 20px; justify-content: center; margin-top: 10px;">
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600;">
+              <span style="width: 12px; height: 3px; background: #2563eb; display: inline-block;"></span>
+              <span>Controls Audited</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600;">
+              <span style="width: 12px; height: 3px; background: #059669; display: inline-block;"></span>
+              <span>Controls Remediated</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 4 – VISUAL DIAGRAM -->
+        <div class="analytic-card scroll-slide-right fade-in-up">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">account_tree</span>
+              <span>4. Performance Continuous Improvement Cycle</span>
+            </div>
+            <div class="analytic-badge">Velocity Loop</div>
+          </div>
+
+          <div class="process-diagram-container">
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">analytics</span></div>
+              <div class="diagram-node-title">KPI Baseline</div>
+              <div class="diagram-node-desc">Target Established</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">monitor</span></div>
+              <div class="diagram-node-title">Real-Time Audit</div>
+              <div class="diagram-node-desc">Automated Telemetry</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">trending_up</span></div>
+              <div class="diagram-node-title">Benchmarking</div>
+              <div class="diagram-node-desc">Peer Velocity</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">leaderboard</span></div>
+              <div class="diagram-node-title">Board Briefing</div>
+              <div class="diagram-node-desc">Governance Sign-off</div>
+            </div>
+          </div>
+
+          <div class="workflow-image-preview">
+            <img src="assets/hero_data_privacy.webp" alt="Continuous Telemetry & Compliance Performance Monitoring">
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

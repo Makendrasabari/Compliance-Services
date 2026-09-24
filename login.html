@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Stackly Compliance Platform</title>
+  <meta name="description" content="Access the Stackly enterprise compliance and regulatory governance dashboard.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- UNIQUE PRELOADER -->
+  <div class="preloader" id="sitePreloader">
+    <div class="preloader-shield-wrapper">
+      <div class="preloader-ring"></div>
+      <div class="preloader-ring-outer"></div>
+      <img src="assets/logo.webp" alt="Stackly Compliance" class="preloader-logo">
+    </div>
+    <div class="preloader-title">Stackly Compliance</div>
+    <div class="preloader-subtext">Enterprise Governance & Regulatory Advisory</div>
+    <div class="preloader-progress-bar">
+      <div class="preloader-progress-fill"></div>
+    </div>
+  </div>
+
+  <div class="auth-page-wrapper">
+    <!-- TWO-COLUMN SPLIT CONTAINER -->
+    <div class="auth-split-card fade-in-up">
+      
+      <!-- LEFT COLUMN: THEME-RELEVANT COMPLIANCE VISUAL -->
+      <div class="auth-visual-side">
+        <div class="auth-visual-bg-glow"></div>
+        
+        <div class="auth-visual-top">
+          <div class="auth-visual-badge">
+            <span class="material-icons">security</span>
+            <span>Enterprise Compliance</span>
+          </div>
+          <h2 class="auth-visual-heading">Intelligent Governance & <span>Regulatory Oversight</span></h2>
+          <p class="auth-visual-subtext">Automated audit trails, SOC2/ISO telemetry, and real-time risk assessment designed for modern compliance teams.</p>
+        </div>
+
+        <div class="auth-visual-image-wrapper">
+          <img src="assets/hero_security_center.webp" alt="Stackly Compliance Telemetry System" class="auth-visual-image">
+        </div>
+
+        <div class="auth-visual-perks">
+          <div class="auth-perk-item">
+            <span class="material-icons">verified</span>
+            <span>Real-time continuous audit readiness & compliance scoring</span>
+          </div>
+          <div class="auth-perk-item">
+            <span class="material-icons">shield</span>
+            <span>Zero-trust enterprise governance with encrypted telemetry</span>
+          </div>
+          <div class="auth-perk-item">
+            <span class="material-icons">speed</span>
+            <span>Automated regulatory cross-border surveillance</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: AUTHENTICATION FORM CONTENT -->
+      <div class="auth-form-side">
+        <!-- Back to Home Button at the top of Stackly logo -->
+        <div class="auth-top-action-bar">
+          <a href="index.html" class="auth-back-home" id="loginBackHomeBtn">
+            <span class="material-icons">arrow_back</span>
+            <span>Back to Home</span>
+          </a>
+        </div>
+
+        <!-- Stackly Logo -->
+        <a href="index.html" class="auth-logo-link">
+          <img src="assets/logo.webp" alt="Stackly Logo" class="auth-logo">
+        </a>
+        
+        <h1 class="auth-title">Welcome Back</h1>
+        <p class="auth-subtitle">Sign in to access your enterprise compliance portal</p>
+
+        <form id="loginForm" novalidate>
+          <!-- Name Field for Dynamic Dashboard Personalization -->
+          <div class="form-group">
+            <label for="loginName" class="form-label">Full Name</label>
+            <input 
+              type="text" 
+              id="loginName" 
+              class="form-control" 
+              placeholder="Enter your name" 
+              autocomplete="name"
+            >
+            <div id="loginNameError" class="form-feedback error"></div>
+          </div>
+
+          <!-- Email Address (Gmail Only) -->
+          <div class="form-group">
+            <label for="loginEmail" class="form-label">Email Address</label>
+            <input 
+              type="email" 
+              id="loginEmail" 
+              class="form-control" 
+              placeholder="Enter your email" 
+              autocomplete="email"
+            >
+            <div id="loginEmailError" class="form-feedback error"></div>
+          </div>
+
+          <!-- Role Selector: Streamlined 2-Box Selector -->
+          <div class="form-group">
+            <label class="form-label">Compliance Role</label>
+            <input type="hidden" id="selectedRole" value="Compliance Officer">
+            
+            <div class="role-boxes-grid" id="loginRoleBoxes">
+              <!-- Role Box 1: Compliance Officer -->
+              <div class="role-box active" data-role="Compliance Officer" tabindex="0" role="radio" aria-checked="true" aria-label="Compliance Officer">
+                <div class="role-box-header">
+                  <span class="material-icons role-box-icon">verified_user</span>
+                  <div class="role-box-radio"></div>
+                </div>
+                <div class="role-box-title">Compliance Officer</div>
+                <div class="role-box-desc">Audit & Regulatory Governance</div>
+              </div>
+
+              <!-- Role Box 2: Compliance Manager -->
+              <div class="role-box" data-role="Compliance Manager" tabindex="0" role="radio" aria-checked="false" aria-label="Compliance Manager">
+                <div class="role-box-header">
+                  <span class="material-icons role-box-icon">manage_accounts</span>
+                  <div class="role-box-radio"></div>
+                </div>
+                <div class="role-box-title">Compliance Manager</div>
+                <div class="role-box-desc">Risk Management & Oversight</div>
+              </div>
+            </div>
+            <div id="loginRoleError" class="form-feedback error"></div>
+          </div>
+
+          <!-- Password (Exactly 8 characters) -->
+          <div class="form-group">
+            <label for="loginPassword" class="form-label">Password</label>
+            <input 
+              type="password" 
+              id="loginPassword" 
+              class="form-control" 
+              placeholder="Enter the password" 
+              maxlength="8"
+              autocomplete="current-password"
+            >
+            <div id="loginPasswordError" class="form-feedback error"></div>
+          </div>
+
+          <!-- Forgot Password Link -> 404.html -->
+          <div class="auth-helper-row">
+            <span></span>
+            <a href="404.html" id="forgotPasswordLink">Forgot Password?</a>
+          </div>
+
+          <!-- General Feedback Message -->
+          <div id="loginGeneralFeedback" class="form-feedback" style="margin-bottom: 16px;"></div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary btn-full" id="loginSubmitBtn" style="height: 50px;">
+            <span>Sign In to Platform</span>
+            <span class="material-icons">login</span>
+          </button>
+        </form>
+
+        <!-- Create Account Link -> signup.html -->
+        <div class="auth-card-footer">
+          Don't have an enterprise account? 
+          <a href="signup.html" id="signupLink">Create an Account</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

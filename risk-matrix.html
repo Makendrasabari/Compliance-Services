@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Risk Matrix | Stackly Platform</title>
+  <meta name="description" content="Enterprise risk matrix, threat posture index, and departmental risk analytics on Stackly.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- FIXED SIDEBAR (EXACTLY 5 HEADINGS) -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="sidebar-header">
+      <a href="dashboard.html" class="sidebar-brand dash-brand-logo-action" title="Navigate to Overview">
+        <img src="assets/logo.webp" alt="Stackly Logo">
+      </a>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+
+    <div class="sidebar-nav-container">
+      <div class="sidebar-heading-group">
+        <div class="sidebar-section-title">Navigation</div>
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item" data-heading="Overview">
+            <a href="dashboard.html">
+              <span class="material-icons">dashboard</span>
+              <span>Overview</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Regulatory Tracking">
+            <a href="regulatory-tracking.html">
+              <span class="material-icons">verified_user</span>
+              <span>Regulatory Tracking</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item active" data-heading="Risk Matrix">
+            <a href="risk-matrix.html">
+              <span class="material-icons">shield</span>
+              <span>Risk Matrix</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Performance Metrics">
+            <a href="performance-metrics.html">
+              <span class="material-icons">analytics</span>
+              <span>Performance Metrics</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Audit Summaries">
+            <a href="audit-summaries.html">
+              <span class="material-icons">description</span>
+              <span>Audit Summaries</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SIGN OUT AT BOTTOM -->
+    <div class="sidebar-footer">
+      <button class="btn-signout" id="sidebarSignOutBtn">
+        <span class="material-icons">logout</span>
+        <span>Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN WRAPPER -->
+  <div class="dash-main-wrapper">
+    <!-- TOP NAVIGATION BAR -->
+    <header class="dash-topbar">
+      <div class="dash-topbar-left">
+        <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" aria-label="Open Sidebar">
+          <span class="material-icons">menu</span>
+        </button>
+        <h1 class="page-current-heading" id="pageCurrentHeading">Risk Matrix</h1>
+      </div>
+
+      <div class="dash-topbar-right">
+        <a href="404.html" class="topbar-badge-icon" title="Risk Alerts" aria-label="Notifications">
+          <span class="material-icons">notifications</span>
+          <span class="notification-dot"></span>
+        </a>
+
+        <!-- PROFILE TRIGGER -->
+        <div class="profile-pill-trigger" id="profileDropdownTrigger" tabindex="0">
+          <div class="profile-avatar-circle" id="profileAvatarLetter">S</div>
+          <span class="profile-name-text" id="topbarUserName">Sathya</span>
+          <span class="material-icons" style="font-size: 18px; color: var(--color-text-muted);">expand_more</span>
+
+          <!-- DYNAMIC PROFILE POPOVER PANEL (ONLY NAME, EMAIL, ROLE) -->
+          <div class="profile-panel-dropdown" id="profileDropdownPanel">
+            <div class="profile-panel-header" style="padding-bottom: 0; border-bottom: none; margin-bottom: 0;">
+              <div class="profile-detail-name" id="profileDetailName">Sathya</div>
+              <div class="profile-detail-email" id="profileDetailEmail">sathya.compliance@gmail.com</div>
+              <span class="profile-role-tag" id="profileDetailRole">Compliance Officer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT AREA -->
+    <main class="dash-content-area">
+      <!-- WELCOME / OVERVIEW BANNER -->
+      <section class="dash-welcome-banner fade-in-up" style="background: linear-gradient(135deg, #07152b 0%, #1e1b4b 100%);">
+        <div>
+          <h2 class="welcome-title">Enterprise Risk Matrix & Posture Surveillance</h2>
+          <p class="welcome-sub">
+            Continuous threat, vulnerability, and governance risk scoring across departmental units and corporate assets.
+          </p>
+        </div>
+      </section>
+
+      <!-- STATS SUMMARY WIDGETS -->
+      <section class="dash-stats-row">
+        <div class="dash-stat-widget fade-in-up">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Risk Posture Index</div>
+            <div class="stat-widget-value">Low (12.8)</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">shield</span>
+              <span>Target &lt; 20.0</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon green">
+            <span class="material-icons">verified_user</span>
+          </div>
+        </div>
+
+        <div class="dash-stat-widget fade-in-up">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">High Risk Items</div>
+            <div class="stat-widget-value">0 Critical</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">check_circle</span>
+              <span>3 resolved this cycle</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon blue">
+            <span class="material-icons">security</span>
+          </div>
+        </div>
+
+        <div class="dash-stat-widget fade-in-up">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Mitigated Threats</div>
+            <div class="stat-widget-value">142 Items</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">trending_up</span>
+              <span>+18 this quarter</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon purple">
+            <span class="material-icons">task_alt</span>
+          </div>
+        </div>
+
+        <div class="dash-stat-widget fade-in-up">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Control Efficacy</div>
+            <div class="stat-widget-value">96.4%</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">rule</span>
+              <span>Certified valid</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon amber">
+            <span class="material-icons">assessment</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOUR MAIN ANALYTICAL SECTIONS ARRANGED ONE BY ONE -->
+      <section class="analytics-stacked-column">
+        <!-- SECTION 1 – PIE CHART -->
+        <div class="analytic-card scroll-slide-left fade-in-up">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">pie_chart</span>
+              <span>1. Enterprise Risk Breakdown by Severity</span>
+            </div>
+            <div class="analytic-badge">Threat Profiling</div>
+          </div>
+          <div class="chart-container-box">
+            <div class="pie-chart-wrapper">
+              <canvas id="riskPieChartCanvas" width="220" height="220"></canvas>
+              <ul class="pie-chart-legend">
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#059669;"></span>
+                  <span>Low Risk (54%)</span>
+                </li>
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#3b82f6;"></span>
+                  <span>Medium Risk (32%)</span>
+                </li>
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#d97706;"></span>
+                  <span>Elevated (10%)</span>
+                </li>
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#dc2626;"></span>
+                  <span>High Risk (4%)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2 – BAR CHART -->
+        <div class="analytic-card scroll-slide-right fade-in-up">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">bar_chart</span>
+              <span>2. Department Risk Severity Index</span>
+            </div>
+            <div class="analytic-badge">Organizational Risk Load</div>
+          </div>
+          <div class="chart-container-box">
+            <canvas id="riskDeptBarChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- SECTION 3 – GRAPH -->
+        <div class="analytic-card scroll-slide-left fade-in-up">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">show_chart</span>
+              <span>3. Enterprise Risk Reduction Trajectory</span>
+            </div>
+            <div class="analytic-badge">Residual Risk Trend</div>
+          </div>
+          <div class="chart-container-box">
+            <canvas id="riskLineChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- SECTION 4 – VISUAL DIAGRAM -->
+        <div class="analytic-card scroll-slide-right fade-in-up">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">account_tree</span>
+              <span>4. Risk Mitigation & Remediation Lifecycle</span>
+            </div>
+            <div class="analytic-badge">Remediation Architecture</div>
+          </div>
+
+          <div class="process-diagram-container">
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">policy</span></div>
+              <div class="diagram-node-title">Identification</div>
+              <div class="diagram-node-desc">Threat Ingestion</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">filter_alt</span></div>
+              <div class="diagram-node-title">Triage</div>
+              <div class="diagram-node-desc">Impact Severity</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">handyman</span></div>
+              <div class="diagram-node-title">Control Design</div>
+              <div class="diagram-node-desc">Engineering Guard</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">gavel</span></div>
+              <div class="diagram-node-title">Validation</div>
+              <div class="diagram-node-desc">Audit Sign-off</div>
+            </div>
+          </div>
+
+          <div class="workflow-image-preview">
+            <img src="assets/risk_cyber.webp" alt="Cyber & Operational Risk Analytics Process">
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

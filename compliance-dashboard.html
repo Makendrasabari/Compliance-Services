@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compliance Manager Operations Dashboard | Stackly Platform</title>
+  <meta name="description" content="Operational compliance management, departmental control execution, review queues, and remediation tracking on the Stackly platform.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- FIXED SIDEBAR (EXACTLY 5 HEADINGS) -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="sidebar-header">
+      <a href="compliance-dashboard.html" class="sidebar-brand dash-brand-logo-action" title="Navigate to Operations Dashboard">
+        <img src="assets/logo.webp" alt="Stackly Logo">
+      </a>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+
+    <div class="sidebar-nav-container">
+      <div class="sidebar-heading-group">
+        <div class="sidebar-section-title">Navigation</div>
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item active" data-heading="Operations Overview">
+            <a href="compliance-dashboard.html">
+              <span class="material-icons">dashboard</span>
+              <span>Operations Overview</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Departmental Allocation">
+            <a href="regulatory-tracking.html">
+              <span class="material-icons">donut_large</span>
+              <span>Departmental Allocation</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Operational Risk Triage">
+            <a href="risk-matrix.html">
+              <span class="material-icons">leaderboard</span>
+              <span>Operational Risk Triage</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Workflow Throughput">
+            <a href="performance-metrics.html">
+              <span class="material-icons">timeline</span>
+              <span>Workflow Throughput</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Remediation Pipeline">
+            <a href="audit-summaries.html">
+              <span class="material-icons">account_tree</span>
+              <span>Remediation Pipeline</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SIGN OUT AT BOTTOM -->
+    <div class="sidebar-footer">
+      <button class="btn-signout" id="sidebarSignOutBtn">
+        <span class="material-icons">logout</span>
+        <span>Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN WRAPPER -->
+  <div class="dash-main-wrapper">
+    <!-- TOP NAVIGATION BAR -->
+    <header class="dash-topbar">
+      <div class="dash-topbar-left">
+        <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" aria-label="Open Sidebar">
+          <span class="material-icons">menu</span>
+        </button>
+        <h1 class="page-current-heading" id="pageCurrentHeading">Operations Overview</h1>
+      </div>
+
+      <div class="dash-topbar-right">
+        <a href="404.html" class="topbar-badge-icon" title="Audit Notifications" aria-label="Notifications">
+          <span class="material-icons">notifications</span>
+          <span class="notification-dot"></span>
+        </a>
+
+        <!-- PROFILE TRIGGER WITH DYNAMIC USER NAME -->
+        <div class="profile-pill-trigger" id="profileDropdownTrigger" tabindex="0">
+          <div class="profile-avatar-circle" id="profileAvatarLetter">S</div>
+          <span class="profile-name-text" id="topbarUserName">Sathya</span>
+          <span class="material-icons" style="font-size: 18px; color: var(--color-text-muted);">expand_more</span>
+
+          <!-- DYNAMIC PROFILE POPOVER PANEL (ONLY NAME, EMAIL, ROLE) -->
+          <div class="profile-panel-dropdown" id="profileDropdownPanel">
+            <div class="profile-panel-header" style="padding-bottom: 0; border-bottom: none; margin-bottom: 0;">
+              <div class="profile-detail-name" id="profileDetailName">Sathya</div>
+              <div class="profile-detail-email" id="profileDetailEmail">sathya.compliance@gmail.com</div>
+              <span class="profile-role-tag" id="profileDetailRole">Compliance Manager</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT AREA -->
+    <main class="dash-content-area">
+      <!-- ANALYTICS SUMMARY BANNER -->
+      <section class="dash-welcome-banner fade-in-up" id="compOverviewSection" style="background: linear-gradient(135deg, #07152b 0%, #1a56db 100%);">
+        <div>
+          <h2 class="welcome-title">Welcome, <span class="dynamic-user-name">Sathya</span></h2>
+          <p class="welcome-sub">
+            Your operational compliance pipeline is tracking 96.2% control velocity across team review queues, departmental assessments, and remediation SLAs.
+          </p>
+        </div>
+        <div class="welcome-actions">
+          <a href="regulatory-tracking.html" class="btn btn-white btn-sm">
+            <span>Review Departmental Controls</span>
+            <span class="material-icons">arrow_forward</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- STATS SUMMARY WIDGETS -->
+      <section class="dash-stats-row" id="dashStatsRow">
+        <!-- 1. Operational Execution Rate -->
+        <div class="dash-stat-widget fade-in-up" data-stat-id="operational-execution">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Operational Execution Rate</div>
+            <div class="stat-widget-value">96.2%</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">speed</span>
+              <span>+3.8% team velocity</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon green">
+            <span class="material-icons">bolt</span>
+          </div>
+        </div>
+
+        <!-- 2. Department Review Queue -->
+        <div class="dash-stat-widget fade-in-up" data-stat-id="review-queue">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Department Review Queue</div>
+            <div class="stat-widget-value">18 Items</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">assignment_turned_in</span>
+              <span>5 awaiting sign-off</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon blue">
+            <span class="material-icons">fact_check</span>
+          </div>
+        </div>
+
+        <!-- 3. Active Control Workflows -->
+        <div class="dash-stat-widget fade-in-up" data-stat-id="active-workflows">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Active Control Workflows</div>
+            <div class="stat-widget-value">42 Tasks</div>
+            <div class="stat-widget-trend trend-warning">
+              <span class="material-icons" style="font-size: 16px;">rule</span>
+              <span>8 assigned this sprint</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon amber">
+            <span class="material-icons">format_list_bulleted</span>
+          </div>
+        </div>
+
+        <!-- 4. Remediation SLA Rate -->
+        <div class="dash-stat-widget fade-in-up" data-stat-id="remediation-sla">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Remediation SLA Rate</div>
+            <div class="stat-widget-value">98.4%</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">verified_user</span>
+              <span>Avg. 3.2 days turnaround</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon purple">
+            <span class="material-icons">published_with_changes</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOUR DISTINCT ANALYTICAL SECTIONS ARRANGED ONE BY ONE -->
+      <section class="analytics-stacked-column">
+        <!-- SECTION 1 – COMPLIANCE DISTRIBUTION (PIE CHART - REGULATORY TRACKING) -->
+        <div class="analytic-card scroll-slide-left fade-in-up" id="compRegulatorySection">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">donut_large</span>
+              <span>1. Departmental Operational Allocation</span>
+            </div>
+            <div class="analytic-badge">Team Resource Allocation</div>
+          </div>
+          <div class="chart-container-box">
+            <div class="pie-chart-wrapper">
+              <canvas id="auditPieChartCanvas" width="220" height="220"></canvas>
+              <ul class="pie-chart-legend">
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#1a56db;"></span>
+                  <span>Control Monitoring (40%)</span>
+                </li>
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#38bdf8;"></span>
+                  <span>Evidence Collection (30%)</span>
+                </li>
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#d97706;"></span>
+                  <span>Policy Enforcement (18%)</span>
+                </li>
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#059669;"></span>
+                  <span>Remediation Auditing (12%)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2 – DEPARTMENT RISK (BAR CHART - RISK MATRIX) -->
+        <div class="analytic-card scroll-slide-right fade-in-up" id="compRiskMatrixSection">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">leaderboard</span>
+              <span>2. Operational Risk Triage by Unit</span>
+            </div>
+            <div class="analytic-badge">Unit Vulnerability Scoring</div>
+          </div>
+          <div class="chart-container-box">
+            <canvas id="deptRiskBarChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- SECTION 3 – MONTHLY COMPLIANCE TREND (GRAPH - PERFORMANCE METRICS) -->
+        <div class="analytic-card scroll-slide-left fade-in-up" id="compPerformanceSection">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">timeline</span>
+              <span>3. Operational Workflow Throughput</span>
+            </div>
+            <div class="analytic-badge">Controls Assigned vs Completed</div>
+          </div>
+          <div class="chart-container-box">
+            <canvas id="trendLineChartCanvas"></canvas>
+          </div>
+          <div style="display: flex; gap: 20px; justify-content: center; margin-top: 10px;">
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600;">
+              <span style="width: 12px; height: 3px; background: #1a56db; display: inline-block;"></span>
+              <span>Controls Assigned</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600;">
+              <span style="width: 12px; height: 3px; background: #059669; display: inline-block;"></span>
+              <span>Controls Completed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 4 – AUDIT WORKFLOW (AUDIT SUMMARIES) -->
+        <div class="analytic-card scroll-slide-right fade-in-up" id="compAuditSection">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">account_tree</span>
+              <span>4. Operational Remediation Pipeline</span>
+            </div>
+            <div class="analytic-badge">Five-Stage Execution Pipeline</div>
+          </div>
+
+          <!-- Flow constructed with CSS connectors and Material Icons -->
+          <div class="process-diagram-container">
+            <div class="diagram-node">
+              <div class="diagram-node-icon" style="background:#1a56db;"><span class="material-icons">assignment</span></div>
+              <div class="diagram-node-title">Triage</div>
+              <div class="diagram-node-desc">Issues prioritized</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon" style="background:#2563eb;"><span class="material-icons">group_add</span></div>
+              <div class="diagram-node-title">Assignment</div>
+              <div class="diagram-node-desc">Staff allocated</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon" style="background:#0284c7;"><span class="material-icons">build_circle</span></div>
+              <div class="diagram-node-title">Remediation</div>
+              <div class="diagram-node-desc">Controls patched</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon" style="background:#059669;"><span class="material-icons">verified</span></div>
+              <div class="diagram-node-title">Validation</div>
+              <div class="diagram-node-desc">Testing verified</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon" style="background:#047857;"><span class="material-icons">fact_check</span></div>
+              <div class="diagram-node-title">Resolution</div>
+              <div class="diagram-node-desc">Manager sign-off</div>
+            </div>
+          </div>
+
+          <div class="workflow-image-preview">
+            <img src="assets/hero_boardroom.webp" alt="Operational Remediation Pipeline Execution">
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

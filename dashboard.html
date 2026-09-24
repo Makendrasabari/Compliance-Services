@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compliance Executive Dashboard | Stackly Platform</title>
+  <meta name="description" content="Stackly Enterprise Compliance and Risk Governance Operations Dashboard.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- FIXED SIDEBAR (EXACTLY 5 HEADINGS) -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="sidebar-header">
+      <a href="dashboard.html" class="sidebar-brand dash-brand-logo-action" title="Refresh Dashboard Overview">
+        <img src="assets/logo.webp" alt="Stackly Logo">
+      </a>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+
+    <div class="sidebar-nav-container">
+      <div class="sidebar-heading-group">
+        <div class="sidebar-section-title">Navigation</div>
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item active" data-heading="Overview">
+            <a href="dashboard.html">
+              <span class="material-icons">dashboard</span>
+              <span>Overview</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Regulatory Tracking">
+            <a href="regulatory-tracking.html">
+              <span class="material-icons">verified_user</span>
+              <span>Regulatory Tracking</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Risk Matrix">
+            <a href="risk-matrix.html">
+              <span class="material-icons">shield</span>
+              <span>Risk Matrix</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Performance Metrics">
+            <a href="performance-metrics.html">
+              <span class="material-icons">analytics</span>
+              <span>Performance Metrics</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item" data-heading="Audit Summaries">
+            <a href="audit-summaries.html">
+              <span class="material-icons">description</span>
+              <span>Audit Summaries</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SIGN OUT AT BOTTOM -->
+    <div class="sidebar-footer">
+      <button class="btn-signout" id="sidebarSignOutBtn">
+        <span class="material-icons">logout</span>
+        <span>Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN WRAPPER -->
+  <div class="dash-main-wrapper">
+    <!-- TOP NAVIGATION BAR -->
+    <header class="dash-topbar">
+      <div class="dash-topbar-left">
+        <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" aria-label="Open Sidebar">
+          <span class="material-icons">menu</span>
+        </button>
+        <h1 class="page-current-heading" id="pageCurrentHeading">Overview</h1>
+      </div>
+
+      <div class="dash-topbar-right">
+        <!-- Quick Action / Notification -->
+        <a href="404.html" class="topbar-badge-icon" title="Notifications" aria-label="Notifications">
+          <span class="material-icons">notifications</span>
+          <span class="notification-dot"></span>
+        </a>
+
+        <!-- PROFILE TRIGGER WITH LOGGED IN USER NAME -->
+        <div class="profile-pill-trigger" id="profileDropdownTrigger" tabindex="0">
+          <div class="profile-avatar-circle" id="profileAvatarLetter">S</div>
+          <span class="profile-name-text" id="topbarUserName">Sathya</span>
+          <span class="material-icons" style="font-size: 18px; color: var(--color-text-muted);">expand_more</span>
+
+          <!-- DYNAMIC PROFILE POPOVER PANEL (ONLY NAME, EMAIL, ROLE) -->
+          <div class="profile-panel-dropdown" id="profileDropdownPanel">
+            <div class="profile-panel-header" style="padding-bottom: 0; border-bottom: none; margin-bottom: 0;">
+              <div class="profile-detail-name" id="profileDetailName">Sathya</div>
+              <div class="profile-detail-email" id="profileDetailEmail">sathya.compliance@gmail.com</div>
+              <span class="profile-role-tag" id="profileDetailRole">Compliance Officer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- DASHBOARD CONTENT AREA -->
+    <main class="dash-content-area">
+      <!-- WELCOME HERO BANNER (DYNAMIC USER NAME) -->
+      <section class="dash-welcome-banner fade-in-up" id="dashOverviewSection">
+        <div>
+          <h2 class="welcome-title">Welcome, <span class="dynamic-user-name">Sathya</span></h2>
+          <p class="welcome-sub">
+            Your enterprise compliance telemetry indicates a 94% optimal readiness index across all active audit charters.
+          </p>
+        </div>
+        <div class="welcome-actions">
+          <a href="404.html" class="btn btn-white btn-sm">
+            <span>View Full Analytics</span>
+            <span class="material-icons">arrow_forward</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- STATS SUMMARY WIDGETS -->
+      <section class="dash-stats-row" id="dashStatsRow">
+        <!-- 1. Compliance Score -->
+        <div class="dash-stat-widget fade-in-up" data-stat-id="compliance-score">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Compliance Score</div>
+            <div class="stat-widget-value">94.8%</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">trending_up</span>
+              <span>+2.4% vs last cycle</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon green">
+            <span class="material-icons">verified</span>
+          </div>
+        </div>
+
+        <!-- 2. Risk Overview -->
+        <div class="dash-stat-widget fade-in-up" data-stat-id="risk-posture">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Risk Posture Index</div>
+            <div class="stat-widget-value">Low (14.2)</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">shield</span>
+              <span>Under target threshold</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon blue">
+            <span class="material-icons">gavel</span>
+          </div>
+        </div>
+
+        <!-- 3. Active Compliance Cases -->
+        <div class="dash-stat-widget fade-in-up" data-stat-id="active-audits">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Active Audits & Cases</div>
+            <div class="stat-widget-value">28</div>
+            <div class="stat-widget-trend trend-warning">
+              <span class="material-icons" style="font-size: 16px;">schedule</span>
+              <span>4 upcoming reviews</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon amber">
+            <span class="material-icons">pending_actions</span>
+          </div>
+        </div>
+
+        <!-- 4. Pending Actions -->
+        <div class="dash-stat-widget fade-in-up" data-stat-id="pending-remediation">
+          <div class="stat-widget-info">
+            <div class="stat-widget-label">Pending Remediation</div>
+            <div class="stat-widget-value">6</div>
+            <div class="stat-widget-trend trend-up">
+              <span class="material-icons" style="font-size: 16px;">check_circle</span>
+              <span>12 resolved this week</span>
+            </div>
+          </div>
+          <div class="stat-widget-icon purple">
+            <span class="material-icons">task_alt</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOUR MAIN ANALYTICAL SECTIONS ARRANGED ONE BY ONE -->
+      <section class="analytics-stacked-column">
+        <!-- SECTION 1 – PIE CHART (COMPLIANCE DISTRIBUTION) -->
+        <div class="analytic-card scroll-slide-left fade-in-up" id="dashRegulatorySection">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">pie_chart</span>
+              <span>1. Compliance Distribution</span>
+            </div>
+            <div class="analytic-badge">Active Status Breakdown</div>
+          </div>
+          <div class="chart-container-box">
+            <div class="pie-chart-wrapper">
+              <canvas id="compliancePieChartCanvas" width="220" height="220"></canvas>
+              <ul class="pie-chart-legend">
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#059669;"></span>
+                  <span>Compliant (68%)</span>
+                </li>
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#d97706;"></span>
+                  <span>Under Review (18%)</span>
+                </li>
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#6366f1;"></span>
+                  <span>Pending (8%)</span>
+                </li>
+                <li class="legend-item">
+                  <span class="legend-color-box" style="background:#dc2626;"></span>
+                  <span>Non-Compliant (6%)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2 – BAR CHART (RISK & COMPLIANCE METRICS) -->
+        <div class="analytic-card scroll-slide-right fade-in-up" id="dashRiskMatrixSection">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">bar_chart</span>
+              <span>2. Risk & Compliance Metrics</span>
+            </div>
+            <div class="analytic-badge">Institutional Frameworks</div>
+          </div>
+          <div class="chart-container-box">
+            <canvas id="riskMetricsBarChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- SECTION 3 – GRAPH (COMPLIANCE PERFORMANCE) -->
+        <div class="analytic-card scroll-slide-left fade-in-up" id="dashPerformanceSection">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">show_chart</span>
+              <span>3. Compliance Performance</span>
+            </div>
+            <div class="analytic-badge">Monthly Trajectory</div>
+          </div>
+          <div class="chart-container-box">
+            <canvas id="performanceLineChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- SECTION 4 – VISUAL DIAGRAM (COMPLIANCE WORKFLOW ARCHITECTURE) -->
+        <div class="analytic-card scroll-slide-right fade-in-up" id="dashAuditSection">
+          <div class="analytic-card-header">
+            <div class="analytic-card-title">
+              <span class="material-icons">account_tree</span>
+              <span>4. Compliance Workflow Architecture</span>
+            </div>
+            <div class="analytic-badge">Operational Lifecycle</div>
+          </div>
+
+          <!-- Flow built with cards, CSS connectors, Material Icons, NO arrow characters -->
+          <div class="process-diagram-container">
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">search</span></div>
+              <div class="diagram-node-title">Assessment</div>
+              <div class="diagram-node-desc">Scope & Baseline</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">rule</span></div>
+              <div class="diagram-node-title">Review</div>
+              <div class="diagram-node-desc">Gap Evaluation</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">build</span></div>
+              <div class="diagram-node-title">Remediation</div>
+              <div class="diagram-node-desc">Controls Built</div>
+            </div>
+
+            <div class="diagram-connector-pipe"></div>
+
+            <div class="diagram-node">
+              <div class="diagram-node-icon"><span class="material-icons">visibility</span></div>
+              <div class="diagram-node-title">Monitoring</div>
+              <div class="diagram-node-desc">Continuous KPI</div>
+            </div>
+          </div>
+
+          <div class="workflow-image-preview">
+            <img src="assets/services_consulting.webp" alt="Compliance Strategy & Architecture Flow">
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

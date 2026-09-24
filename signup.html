@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | Stackly Compliance Platform</title>
+  <meta name="description" content="Register for an enterprise compliance account on the Stackly platform.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- UNIQUE PRELOADER -->
+  <div class="preloader" id="sitePreloader">
+    <div class="preloader-shield-wrapper">
+      <div class="preloader-ring"></div>
+      <div class="preloader-ring-outer"></div>
+      <img src="assets/logo.webp" alt="Stackly Compliance" class="preloader-logo">
+    </div>
+    <div class="preloader-title">Stackly Compliance</div>
+    <div class="preloader-subtext">Enterprise Governance & Regulatory Advisory</div>
+    <div class="preloader-progress-bar">
+      <div class="preloader-progress-fill"></div>
+    </div>
+  </div>
+
+  <div class="auth-page-wrapper">
+    <div class="auth-card fade-in-up" style="max-width: 520px;">
+      <!-- Back to Home Button at the top of Stackly logo -->
+      <div class="auth-top-action-bar">
+        <a href="index.html" class="auth-back-home" id="signupBackHomeBtn">
+          <span class="material-icons">arrow_back</span>
+          <span>Back to Home</span>
+        </a>
+      </div>
+
+      <!-- Stackly Logo -->
+      <a href="index.html" class="auth-logo-link">
+        <img src="assets/logo.webp" alt="Stackly Logo" class="auth-logo">
+      </a>
+      
+      <h1 class="auth-title">Create Account</h1>
+      <p class="auth-subtitle">Register your organization for enterprise compliance oversight</p>
+
+      <form id="signupForm" novalidate>
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="signupName" class="form-label">Full Name</label>
+          <input 
+            type="text" 
+            id="signupName" 
+            class="form-control" 
+            placeholder="Enter your full name" 
+            autocomplete="name"
+          >
+          <div id="signupNameError" class="form-feedback error"></div>
+        </div>
+
+        <!-- Email Address (Gmail Only) -->
+        <div class="form-group">
+          <label for="signupEmail" class="form-label">Corporate Email Address (@gmail.com)</label>
+          <input 
+            type="email" 
+            id="signupEmail" 
+            class="form-control" 
+            placeholder="Enter your Gmail address" 
+            autocomplete="email"
+          >
+          <div id="signupEmailError" class="form-feedback error"></div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="signupPassword" class="form-label">Password</label>
+          <input 
+            type="password" 
+            id="signupPassword" 
+            class="form-control" 
+            placeholder="Enter the password" 
+            maxlength="8"
+            autocomplete="new-password"
+          >
+          <div id="signupPasswordError" class="form-feedback error"></div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+          <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+          <input 
+            type="password" 
+            id="signupConfirmPassword" 
+            class="form-control" 
+            placeholder="Re-enter your password" 
+            maxlength="8"
+            autocomplete="new-password"
+          >
+          <div id="signupConfirmError" class="form-feedback error"></div>
+        </div>
+
+        <!-- General Feedback Message -->
+        <div id="signupGeneralFeedback" class="form-feedback" style="margin-bottom: 16px;"></div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary btn-full" id="signupSubmitBtn" style="height: 50px;">
+          <span>Register Account</span>
+          <span class="material-icons">person_add</span>
+        </button>
+      </form>
+
+      <!-- Return to Login Link -->
+      <div class="auth-card-footer">
+        Already have an active account? 
+        <a href="login.html" id="backToLoginLink">Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
