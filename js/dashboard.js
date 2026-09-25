@@ -562,16 +562,28 @@ function renderAuditSummariesCharts() {
    -------------------------------------------------------------------------- */
 
 // Helper: compute responsive bounds safely constrained within parent and viewport
-function getResponsiveCanvasDims(canvas, defaultH = 240) {
+function getResponsiveCanvasDims(canvas, defaultH = 230) {
   const parent = canvas.parentElement;
-  const parentW = parent ? parent.clientWidth : 0;
+  let parentW = parent ? parent.clientWidth : 0;
+  if (parent) {
+    const style = window.getComputedStyle(parent);
+    const pLeft = parseFloat(style.paddingLeft) || 0;
+    const pRight = parseFloat(style.paddingRight) || 0;
+    if (parentW > (pLeft + pRight)) {
+      parentW = parentW - pLeft - pRight;
+    }
+  }
+
   const winW = window.innerWidth || 360;
-  // Account for parent container padding / margins so it never exceeds viewport
-  const maxAvailable = winW > 0 ? (winW - 48) : 320;
-  const targetW = parentW > 0 ? Math.min(parentW, maxAvailable) : (canvas.clientWidth || 320);
-  const width = Math.max(260, targetW);
-  const height = canvas.clientHeight || defaultH;
-  return { width, height, isMobile: width < 480 };
+  const maxAvailable = winW > 0 ? (winW - 56) : 320;
+  const targetW = parentW > 40 ? Math.min(parentW, maxAvailable) : (canvas.clientWidth || 320);
+  const width = Math.max(260, Math.floor(targetW));
+
+  // Determine height reliably - NEVER read canvas.clientHeight directly to prevent shrinking feedback loops
+  const isMobile = width < 480;
+  const height = isMobile ? 210 : (defaultH || 230);
+
+  return { width, height, isMobile };
 }
 
 // Label abbreviation map for mobile views to prevent text overlap
@@ -622,20 +634,29 @@ function renderDonutChart(canvasId, dataset) {
   const dpr = window.devicePixelRatio || 1;
   const parent = canvas.parentElement;
   const parentW = parent ? parent.clientWidth : 0;
-  const baseDim = Math.min(parentW > 0 ? parentW : 220, 220);
-  const width = Math.max(180, baseDim);
+
+  // Well-proportioned donut diameter leaving plenty of room for legend
+  let width = 160;
+  if (parentW >= 560) {
+    width = 170;
+  } else if (parentW >= 380) {
+    width = 150;
+  } else if (parentW > 0) {
+    width = Math.min(140, Math.max(120, Math.floor(parentW * 0.44)));
+  }
   const height = width;
 
   canvas.width = Math.round(width * dpr);
   canvas.height = Math.round(height * dpr);
   canvas.style.width = `${width}px`;
   canvas.style.height = `${height}px`;
+  canvas.style.flexShrink = '0';
   ctx.scale(dpr, dpr);
 
   const total = dataset.reduce((acc, cur) => acc + cur.value, 0);
   const centerX = width / 2;
   const centerY = height / 2;
-  const outerRadius = Math.min(centerX, centerY) - 10;
+  const outerRadius = Math.min(centerX, centerY) - 7;
   const innerRadius = outerRadius * 0.62;
 
   let currentAngle = -0.5 * Math.PI;
@@ -653,16 +674,20 @@ function renderDonutChart(canvasId, dataset) {
     currentAngle += sliceAngle;
   });
 
+  // Dynamic font sizing based on diameter
+  const scoreFontSize = Math.max(15, Math.round(width * 0.115));
+  const labelFontSize = Math.max(8.5, Math.round(width * 0.055));
+
   // Inner center text
   ctx.fillStyle = '#0f172a';
-  ctx.font = 'bold 22px "Plus Jakarta Sans", sans-serif';
+  ctx.font = `bold ${scoreFontSize}px "Plus Jakarta Sans", sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('94%', centerX, centerY - 8);
+  ctx.fillText('94%', centerX, centerY - Math.round(scoreFontSize * 0.32));
 
   ctx.fillStyle = '#64748b';
-  ctx.font = '600 11px "Plus Jakarta Sans", sans-serif';
-  ctx.fillText('STATUS SCORE', centerX, centerY + 14);
+  ctx.font = `600 ${labelFontSize}px "Plus Jakarta Sans", sans-serif`;
+  ctx.fillText('STATUS SCORE', centerX, centerY + Math.round(labelFontSize * 1.3));
 }
 
 // 2. Area / Line Graph
@@ -672,20 +697,28 @@ function renderAreaGraph(canvasId, chartData) {
 
   const ctx = canvas.getContext('2d');
   const dpr = window.devicePixelRatio || 1;
-  const { width, height, isMobile } = getResponsiveCanvasDims(canvas, 240);
+  const { width, height, isMobile } = getResponsiveCanvasDims(canvas, 230);
 
   canvas.width = Math.round(width * dpr);
   canvas.height = Math.round(height * dpr);
   canvas.style.width = '100%';
   canvas.style.maxWidth = '100%';
+  canvas.style.height = `${height}px`;
   ctx.scale(dpr, dpr);
 
-  const paddingLeft = isMobile ? 32 : 40;
-  const paddingRight = isMobile ? 12 : 20;
+  const paddingLeft = isMobile ? 38 : 46;
+  const paddingRight = isMobile ? 20 : 26;
   const paddingTop = 25;
   const paddingBottom = 35;
-  const graphWidth = width - paddingLeft - paddingRight;
-  const graphHeight = height - paddingTop - paddingBottom;
+  const graphWidth = Math.max(160, width - paddingLeft - paddingRight);
+  const graphHeight = Math.max(120, height - paddingTop - paddingBottom);
+
+  // Determine min and max scale cleanly
+  const dataMin = Math.min(...chartData.data);
+  const isLowScale = dataMin < 35;
+  const minVal = chartData.min !== undefined ? chartData.min : (isLowScale ? 0 : 40);
+  const maxVal = chartData.max !== undefined ? chartData.max : (isLowScale ? 40 : 100);
+  const stepVal = (maxVal - minVal) / 4;
 
   // Background grid lines
   ctx.strokeStyle = '#f1f5f9';
@@ -701,16 +734,16 @@ function renderAreaGraph(canvasId, chartData) {
     ctx.fillStyle = '#94a3b8';
     ctx.font = isMobile ? '10px "Plus Jakarta Sans", sans-serif' : '11px "Plus Jakarta Sans", sans-serif';
     ctx.textAlign = 'right';
-    ctx.fillText(`${100 - i * 15}%`, paddingLeft - 6, y + 4);
+    const labelNum = Math.round(maxVal - i * stepVal);
+    ctx.fillText(`${labelNum}%`, paddingLeft - 8, y + 4);
   }
 
   const stepX = graphWidth / (chartData.labels.length - 1);
-  const minVal = 60;
-  const maxVal = 100;
 
   const points = chartData.data.map((val, idx) => {
+    const clampedVal = Math.max(minVal, Math.min(maxVal, val));
     const x = paddingLeft + idx * stepX;
-    const y = paddingTop + graphHeight - ((val - minVal) / (maxVal - minVal)) * graphHeight;
+    const y = paddingTop + graphHeight - ((clampedVal - minVal) / (maxVal - minVal)) * graphHeight;
     return { x, y, val };
   });
 
@@ -741,18 +774,22 @@ function renderAreaGraph(canvasId, chartData) {
   ctx.stroke();
 
   // Dots & X Labels
+  const totalLabels = chartData.labels.length;
   points.forEach((pt, i) => {
     ctx.beginPath();
-    ctx.arc(pt.x, pt.y, 3.5, 0, 2 * Math.PI);
+    ctx.arc(pt.x, pt.y, 4, 0, 2 * Math.PI);
     ctx.fillStyle = '#1a56db';
     ctx.fill();
     ctx.strokeStyle = '#ffffff';
     ctx.lineWidth = 1.5;
     ctx.stroke();
 
-    const showLabel = isMobile
-      ? (i % 3 === 0 || i === points.length - 1)
-      : (i % 2 === 0 || i === points.length - 1);
+    let showLabel = true;
+    if (isMobile) {
+      showLabel = (i % 3 === 0 || i === totalLabels - 1);
+    } else if (width < 560 && totalLabels > 8) {
+      showLabel = (i % 2 === 0 || i === totalLabels - 1);
+    }
 
     if (showLabel) {
       ctx.fillStyle = '#64748b';
@@ -770,20 +807,21 @@ function renderBarChart(canvasId, chartData) {
 
   const ctx = canvas.getContext('2d');
   const dpr = window.devicePixelRatio || 1;
-  const { width, height, isMobile } = getResponsiveCanvasDims(canvas, 240);
+  const { width, height, isMobile } = getResponsiveCanvasDims(canvas, 230);
 
   canvas.width = Math.round(width * dpr);
   canvas.height = Math.round(height * dpr);
   canvas.style.width = '100%';
   canvas.style.maxWidth = '100%';
+  canvas.style.height = `${height}px`;
   ctx.scale(dpr, dpr);
 
-  const paddingLeft = isMobile ? 32 : 40;
-  const paddingRight = isMobile ? 12 : 20;
+  const paddingLeft = isMobile ? 38 : 46;
+  const paddingRight = isMobile ? 18 : 24;
   const paddingTop = 25;
   const paddingBottom = 35;
-  const graphWidth = width - paddingLeft - paddingRight;
-  const graphHeight = height - paddingTop - paddingBottom;
+  const graphWidth = Math.max(160, width - paddingLeft - paddingRight);
+  const graphHeight = Math.max(120, height - paddingTop - paddingBottom);
 
   // Grid
   ctx.strokeStyle = '#f1f5f9';
@@ -798,7 +836,7 @@ function renderBarChart(canvasId, chartData) {
     ctx.fillStyle = '#94a3b8';
     ctx.font = isMobile ? '10px "Plus Jakarta Sans", sans-serif' : '11px "Plus Jakarta Sans", sans-serif';
     ctx.textAlign = 'right';
-    ctx.fillText(`${100 - i * 25}%`, paddingLeft - 6, y + 4);
+    ctx.fillText(`${100 - i * 25}%`, paddingLeft - 8, y + 4);
   }
 
   const numBars = chartData.labels.length;
@@ -846,20 +884,21 @@ function renderTrendGraph(canvasId, chartData) {
 
   const ctx = canvas.getContext('2d');
   const dpr = window.devicePixelRatio || 1;
-  const { width, height, isMobile } = getResponsiveCanvasDims(canvas, 240);
+  const { width, height, isMobile } = getResponsiveCanvasDims(canvas, 230);
 
   canvas.width = Math.round(width * dpr);
   canvas.height = Math.round(height * dpr);
   canvas.style.width = '100%';
   canvas.style.maxWidth = '100%';
+  canvas.style.height = `${height}px`;
   ctx.scale(dpr, dpr);
 
-  const paddingLeft = isMobile ? 32 : 40;
-  const paddingRight = isMobile ? 12 : 20;
+  const paddingLeft = isMobile ? 38 : 46;
+  const paddingRight = isMobile ? 18 : 24;
   const paddingTop = 25;
   const paddingBottom = 35;
-  const graphWidth = width - paddingLeft - paddingRight;
-  const graphHeight = height - paddingTop - paddingBottom;
+  const graphWidth = Math.max(160, width - paddingLeft - paddingRight);
+  const graphHeight = Math.max(120, height - paddingTop - paddingBottom);
 
   // Grid
   ctx.strokeStyle = '#f1f5f9';
@@ -874,7 +913,7 @@ function renderTrendGraph(canvasId, chartData) {
     ctx.fillStyle = '#94a3b8';
     ctx.font = isMobile ? '10px "Plus Jakarta Sans", sans-serif' : '11px "Plus Jakarta Sans", sans-serif';
     ctx.textAlign = 'right';
-    ctx.fillText(`${100 - i * 20}%`, paddingLeft - 6, y + 4);
+    ctx.fillText(`${100 - i * 20}%`, paddingLeft - 8, y + 4);
   }
 
   const stepX = graphWidth / (chartData.labels.length - 1);
@@ -1090,6 +1129,9 @@ function initSectionsScrollAnimation() {
           entry.target.classList.add('revealed');
           entry.target.classList.add('in-view');
           obs.unobserve(entry.target);
+          if (entry.target.querySelector('canvas')) {
+            renderActiveDashboardCharts();
+          }
         }
       });
     }, { 

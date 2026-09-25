@@ -681,22 +681,39 @@ html, body.dashboard-body {
 .chart-container-box canvas {
   max-width: 100% !important;
   display: block;
+  flex-shrink: 0;
 }
 
-/* Pie Chart Layout */
+.chart-container-box canvas:not(#compliancePieChartCanvas):not(#auditPieChartCanvas):not(#regPieChartCanvas):not(#riskPieChartCanvas):not(#perfPieChartCanvas) {
+  width: 100%;
+  height: 230px;
+}
+
+/* Pie Chart Layout - Arranged so legend and content are always completely visible */
+.chart-container-box:has(.pie-chart-wrapper),
+.chart-container-box.pie-box {
+  height: auto !important;
+  min-height: 240px !important;
+  overflow: visible !important;
+  padding: 8px 0;
+}
+
 .pie-chart-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 60px;
+  gap: 22px;
   width: 100%;
-  height: 100%;
   flex-wrap: wrap;
+  padding: 6px 4px;
+  box-sizing: border-box;
 }
 
-.pie-chart-svg {
-  width: 180px;
-  height: 180px;
+.pie-chart-wrapper canvas {
+  flex-shrink: 0;
+  display: block;
+  max-width: 175px !important;
+  max-height: 175px !important;
 }
 
 .pie-chart-legend {
@@ -704,21 +721,26 @@ html, body.dashboard-body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 1;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--color-navy-dark);
+  white-space: nowrap;
 }
 
 .legend-color-box {
-  width: 12px;
-  height: 12px;
+  width: 11px;
+  height: 11px;
   border-radius: 3px;
+  flex-shrink: 0;
 }
 
 /* Section 4 Visual Diagram Flow */
@@ -1056,18 +1078,37 @@ html, body.dashboard-body {
     max-width: 100% !important;
   }
 
+  .chart-container-box:has(.pie-chart-wrapper),
+  .chart-container-box.pie-box {
+    height: auto !important;
+    min-height: 230px !important;
+    overflow: visible !important;
+    padding: 10px 0 !important;
+  }
+
+  .chart-container-box canvas:not(#compliancePieChartCanvas):not(#auditPieChartCanvas):not(#regPieChartCanvas):not(#riskPieChartCanvas):not(#perfPieChartCanvas) {
+    height: 210px !important;
+  }
+
   /* Donut/Pie Chart Wrapper on Mobile */
   .pie-chart-wrapper {
     flex-direction: column !important;
     align-items: center !important;
-    gap: 16px !important;
+    gap: 14px !important;
+    padding: 6px 0 !important;
   }
 
   .pie-chart-legend {
     width: 100% !important;
+    max-width: 320px !important;
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 8px 12px !important;
+  }
+
+  .pie-chart-legend .legend-item {
+    font-size: 0.78rem !important;
+    white-space: normal !important;
   }
 
   /* Process Diagram (Section 4) on Mobile */
